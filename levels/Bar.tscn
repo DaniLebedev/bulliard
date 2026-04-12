@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://nl2657v5xy03"]
+
+[ext_resource type="Material" uid="uid://cmu4vfp7y5t6b" path="res://addons/prototype_mini_bundle/M_prototype_purple.tres" id="1_w1o5x"]
+[ext_resource type="PackedScene" uid="uid://bqb3enva8fayr" path="res://props/ball/ball.tscn" id="2_w1o5x"]
+
+[sub_resource type="Environment" id="Environment_3d8ip"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q3k6c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1o5x"]
+
+[node name="Bar" type="Node3D" unique_id=950193169]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1060682577]
+environment = SubResource("Environment_3d8ip")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment" unique_id=589705512]
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment/StaticBody3D" unique_id=741010799]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(100, 1, 100)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D" unique_id=1666915321]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="RigidBody3D" parent="WorldEnvironment" unique_id=308312661 instance=ExtResource("2_w1o5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.45, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment" unique_id=1440540875]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 31.230331, 0)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 0.0
+light_specular = 13.649
+spot_range = 160.09222
+spot_angle = 67.408195
+
+[node name="Area3D" type="Area3D" parent="WorldEnvironment" unique_id=1785128674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3504333, 0)

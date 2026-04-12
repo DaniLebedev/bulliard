@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bqb3enva8fayr"]
+
+[ext_resource type="Script" uid="uid://dr24gsgka718s" path="res://props/ball/Ball.cs" id="1_xaix2"]
+[ext_resource type="Script" uid="uid://cplvk22yxnffr" path="res://props/ball/CameraControl.cs" id="3_42t3a"]
+[ext_resource type="Material" uid="uid://cn0uqc7hr5gyp" path="res://props/ball/BallMaterial.tres" id="5_c0ahv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ixqi8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_42t3a"]
+material = ExtResource("5_c0ahv")
+radial_segments = 32
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=308312661 node_paths=PackedStringArray("cam")]
+script = ExtResource("1_xaix2")
+cam = NodePath("Camera3D")
+metadata/Ball = "Ball"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=833608731]
+shape = SubResource("SphereShape3D_ixqi8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1907402157]
+mesh = SubResource("SphereMesh_42t3a")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2111192396 node_paths=PackedStringArray("Target")]
+script = ExtResource("3_42t3a")
+Target = NodePath("..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1039454798]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1909180295]
+offset_right = 105.0
+offset_bottom = 23.0
+text = "123"
+horizontal_alignment = 1

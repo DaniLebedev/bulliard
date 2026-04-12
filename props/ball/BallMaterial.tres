@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cn0uqc7hr5gyp"]
+
+[ext_resource type="Texture2D" uid="uid://5pbnmuk1u56g" path="res://props/ball/Steve.png" id="1_bcyo0"]
+
+[resource]
+shading_mode = 2
+albedo_texture = ExtResource("1_bcyo0")
+albedo_texture_force_srgb = true
+uv1_offset = Vector3(-0.25, 0, 0)
