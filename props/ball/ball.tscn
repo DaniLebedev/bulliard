@@ -12,6 +12,9 @@ radial_segments = 32
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=308312661 node_paths=PackedStringArray("cam")]
 script = ExtResource("1_xaix2")
+moveSpeed = 8.0
+moveSpeedCommon = 8.0
+moveSpeedMax = 16.0
 cam = NodePath("Camera3D")
 metadata/Ball = "Ball"
 

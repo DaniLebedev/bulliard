@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://nl2657v5xy03"]
+
+[ext_resource type="Script" uid="uid://b0enjyw1r5m4a" path="res://scripts/CreateLobby.gd" id="1_hbs7g"]
+[ext_resource type="Material" uid="uid://cmu4vfp7y5t6b" path="res://addons/prototype_mini_bundle/M_prototype_purple.tres" id="1_w1o5x"]
+[ext_resource type="Script" uid="uid://8yccoeeo4lml" path="res://scripts/DeadZone.cs" id="3_hgl4u"]
+[ext_resource type="PackedScene" uid="uid://bqb3enva8fayr" path="res://props/ball/ball.tscn" id="4_hbs7g"]
+[ext_resource type="Material" uid="uid://cn0uqc7hr5gyp" path="res://props/ball/BallMaterial.tres" id="5_8i6sh"]
+
+[sub_resource type="Environment" id="Environment_3d8ip"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q3k6c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1o5x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgl4u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0qoyq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_i0geg"]
+material = ExtResource("5_8i6sh")
+radial_segments = 32
+
+[node name="Bar" type="Node3D" unique_id=950193169]
+script = ExtResource("1_hbs7g")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1060682577]
+environment = SubResource("Environment_3d8ip")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment" unique_id=589705512 groups=["Floor"]]
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment/StaticBody3D" unique_id=741010799 groups=["Floor"]]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(100, 1, 100)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D" unique_id=1666915321 groups=["Floor"]]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="WorldEnvironment" unique_id=1891439168]
+transform = Transform3D(-4.371139e-07, -1, 0, 10, -4.371139e-08, 0, 0, 0, 100, -50, 5, 0)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment/StaticBody3D2" unique_id=1248003931]
+material_override = ExtResource("1_w1o5x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D2" unique_id=1071007508 groups=["Floor"]]
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="WorldEnvironment" unique_id=870603576]
+transform = Transform3D(-4.371139e-07, -1, 0, 10, -4.371139e-08, 0, 0, 0, 100, 50, 5, 0)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment/StaticBody3D3" unique_id=135413200]
+material_override = ExtResource("1_w1o5x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D3" unique_id=2073059629 groups=["Floor"]]
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment" unique_id=1440540875]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 31.230331, 0)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 0.0
+light_specular = 13.649
+spot_range = 160.09222
+spot_angle = 67.408195
+
+[node name="Area3D" type="Area3D" parent="WorldEnvironment" unique_id=1785128674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+disable_mode = 2
+script = ExtResource("3_hgl4u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/Area3D" unique_id=1901249736]
+transform = Transform3D(300, 0, 0, 0, 30, 0, 0, 0, 300, 0, 0, 0)
+shape = SubResource("BoxShape3D_hgl4u")
+
+[node name="RigidBody3D" parent="WorldEnvironment" unique_id=308312661 groups=["Ball"] instance=ExtResource("4_hbs7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9248202, 0)
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="WorldEnvironment" unique_id=1184193605 groups=["Ball"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.531034, -3.6877406)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/RigidBody3D2" unique_id=958393398]
+shape = SubResource("SphereShape3D_0qoyq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/RigidBody3D2" unique_id=1545031631]
+mesh = SubResource("SphereMesh_i0geg")
