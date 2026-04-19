@@ -79,7 +79,6 @@ public partial class CameraControl : Camera3D
 			Vector3 offset = rotation * new Vector3(0, height, distance);
 			Vector3 desiredPos = targetPos + offset;
 			height = distance / 3f;
-			GD.Print(distance);
 			// луч от шара к камере
 			PhysicsDirectSpaceState3D spaceState = GetWorld3D().DirectSpaceState;
 
@@ -114,13 +113,11 @@ public partial class CameraControl : Camera3D
 			distance = Mathf.Min(distance + DistanceStep, DistanceMax);
 
 
-			GD.Print(distance);
 		}
 		else if (Input.IsActionPressed("CamDown"))
 		{
 			distance = Mathf.Max(distance - DistanceStep, DistanceMin);
 
-			GD.Print(distance);
 		}
 	}
 

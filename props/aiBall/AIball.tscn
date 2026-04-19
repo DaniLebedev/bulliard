@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://drgcerhwlvkis"]
+
+[ext_resource type="Material" uid="uid://bhhx8w46ltymj" path="res://props/aiBall/AIBallMaterial.tres" id="2_l1jtw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3cofr"]
+material = ExtResource("2_l1jtw")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ixqi8"]
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=308312661]
+metadata/Ball = "Ball"
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1181710357 groups=["AiBall"]]
+mesh = SubResource("SphereMesh_3cofr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=833608731]
+shape = SubResource("SphereShape3D_ixqi8")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1244764297]

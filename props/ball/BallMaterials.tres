@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ohmrvpxs6aki"]
+
+[ext_resource type="Texture2D" uid="uid://5pbnmuk1u56g" path="res://props/ball/Steve.png" id="1_7bma3"]
+
+[resource]
+specular_mode = 1
+albedo_texture = ExtResource("1_7bma3")
+heightmap_scale = 16.0
+uv1_offset = Vector3(-0.25, 0, 0)
+texture_filter = 4

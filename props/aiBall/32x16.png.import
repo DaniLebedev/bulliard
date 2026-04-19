@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g1j85hu4gsln"
-path.s3tc="res://.godot/imported/skin.png-d82f275c9d0d0aad7435137169a6e204.s3tc.ctex"
+uid="uid://bfn7ysicnr0kl"
+path.s3tc="res://.godot/imported/32x16.png-04b9fa4fe041c643a44266c15dbdaf15.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://props/ball/skin.png"
-dest_files=["res://.godot/imported/skin.png-d82f275c9d0d0aad7435137169a6e204.s3tc.ctex"]
+source_file="res://props/aiBall/32x16.png"
+dest_files=["res://.godot/imported/32x16.png-04b9fa4fe041c643a44266c15dbdaf15.s3tc.ctex"]
 
 [params]
 

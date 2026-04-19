@@ -4,70 +4,25 @@
 [ext_resource type="Material" uid="uid://cmu4vfp7y5t6b" path="res://addons/prototype_mini_bundle/M_prototype_purple.tres" id="1_w1o5x"]
 [ext_resource type="Script" uid="uid://8yccoeeo4lml" path="res://scripts/DeadZone.cs" id="3_hgl4u"]
 [ext_resource type="PackedScene" uid="uid://bqb3enva8fayr" path="res://props/ball/ball.tscn" id="4_hbs7g"]
-[ext_resource type="Material" uid="uid://cn0uqc7hr5gyp" path="res://props/ball/BallMaterial.tres" id="5_8i6sh"]
+[ext_resource type="PackedScene" uid="uid://drgcerhwlvkis" path="res://props/aiBall/AIball.tscn" id="5_8i6sh"]
 
 [sub_resource type="Environment" id="Environment_3d8ip"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgl4u"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8i6sh"]
+geometry_source_geometry_mode = 1
+agent_height = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q3k6c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1o5x"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hgl4u"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_0qoyq"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_i0geg"]
-material = ExtResource("5_8i6sh")
-radial_segments = 32
 
 [node name="Bar" type="Node3D" unique_id=950193169]
 script = ExtResource("1_hbs7g")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1060682577]
 environment = SubResource("Environment_3d8ip")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment" unique_id=589705512 groups=["Floor"]]
-physics_material_override = SubResource("PhysicsMaterial_q3k6c")
-constant_linear_velocity = Vector3(0.195, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment/StaticBody3D" unique_id=741010799 groups=["Floor"]]
-material_override = ExtResource("1_w1o5x")
-size = Vector3(100, 1, 100)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D" unique_id=1666915321 groups=["Floor"]]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
-shape = SubResource("BoxShape3D_w1o5x")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="WorldEnvironment" unique_id=1891439168]
-transform = Transform3D(-4.371139e-07, -1, 0, 10, -4.371139e-08, 0, 0, 0, 100, -50, 5, 0)
-physics_material_override = SubResource("PhysicsMaterial_q3k6c")
-constant_linear_velocity = Vector3(0.195, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment/StaticBody3D2" unique_id=1248003931]
-material_override = ExtResource("1_w1o5x")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D2" unique_id=1071007508 groups=["Floor"]]
-shape = SubResource("BoxShape3D_w1o5x")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="WorldEnvironment" unique_id=870603576]
-transform = Transform3D(-4.371139e-07, -1, 0, 10, -4.371139e-08, 0, 0, 0, 100, 50, 5, 0)
-physics_material_override = SubResource("PhysicsMaterial_q3k6c")
-constant_linear_velocity = Vector3(0.195, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment/StaticBody3D3" unique_id=135413200]
-material_override = ExtResource("1_w1o5x")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D3" unique_id=2073059629 groups=["Floor"]]
-shape = SubResource("BoxShape3D_w1o5x")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment" unique_id=1440540875]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 31.230331, 0)
-light_energy = 16.0
-light_indirect_energy = 16.0
-light_volumetric_fog_energy = 0.0
-light_specular = 13.649
-spot_range = 160.09222
-spot_angle = 67.408195
 
 [node name="Area3D" type="Area3D" parent="WorldEnvironment" unique_id=1785128674]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
@@ -78,14 +33,110 @@ script = ExtResource("3_hgl4u")
 transform = Transform3D(300, 0, 0, 0, 30, 0, 0, 0, 300, 0, 0, 0)
 shape = SubResource("BoxShape3D_hgl4u")
 
-[node name="RigidBody3D" parent="WorldEnvironment" unique_id=308312661 groups=["Ball"] instance=ExtResource("4_hbs7g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9248202, 0)
+[node name="AI" parent="WorldEnvironment" unique_id=776298346 groups=["Ball"] instance=ExtResource("5_8i6sh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4836304, -3.242667)
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="WorldEnvironment" unique_id=1184193605 groups=["Ball"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.531034, -3.6877406)
+[node name="RigidBody3D" parent="WorldEnvironment" unique_id=308312661 instance=ExtResource("4_hbs7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2723114, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/RigidBody3D2" unique_id=958393398]
-shape = SubResource("SphereShape3D_0qoyq")
+[node name="SpotLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1100194933]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.192488e-08, 0.99999994, 0, -0.99999994, 1.192488e-08, 0, 25.115, 0)
+light_energy = 2.92
+light_specular = 4.307
+shadow_enabled = true
+shadow_opacity = 0.8
+shadow_blur = 3.12
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/RigidBody3D2" unique_id=1545031631]
-mesh = SubResource("SphereMesh_i0geg")
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1951240073]
+navigation_mesh = SubResource("NavigationMesh_8i6sh")
+navigation_layers = 4294967295
+
+[node name="pol" type="StaticBody3D" parent="NavigationRegion3D" unique_id=589705512 groups=["Floor"]]
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/pol" unique_id=741010799 groups=["Floor"]]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(100, 1, 100)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/pol" unique_id=1666915321 groups=["Floor"]]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="wall" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1891439168]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -50, 5, 0)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/wall" unique_id=1248003931]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(10, 1, 120)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wall" unique_id=1071007508]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 120, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="wall2" type="StaticBody3D" parent="NavigationRegion3D" unique_id=870603576]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 50, 5, 0)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/wall2" unique_id=135413200]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(10, 1, 120)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wall2" unique_id=2073059629]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 120, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="wall3" type="StaticBody3D" parent="NavigationRegion3D" unique_id=432861948]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 5, -60)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/wall3" unique_id=1572163408]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(10, 1, 100)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wall3" unique_id=1352759439]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="wall4" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1316818086]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 5, 60)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/wall4" unique_id=1048014899]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(10, 1, 100)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/wall4" unique_id=1763525759]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="pol2" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1662251350 groups=["Floor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 55)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/pol2" unique_id=587225770 groups=["Floor"]]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(80, 1, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/pol2" unique_id=1141013234 groups=["Floor"]]
+transform = Transform3D(80, 0, 0, 0, 0.8, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")
+
+[node name="pol3" type="StaticBody3D" parent="NavigationRegion3D" unique_id=389877901 groups=["Floor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -55)
+physics_material_override = SubResource("PhysicsMaterial_q3k6c")
+constant_linear_velocity = Vector3(0.195, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/pol3" unique_id=1673554947 groups=["Floor"]]
+material_override = ExtResource("1_w1o5x")
+size = Vector3(80, 1, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/pol3" unique_id=2138567392 groups=["Floor"]]
+transform = Transform3D(80, 0, 0, 0, 0.8, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_w1o5x")

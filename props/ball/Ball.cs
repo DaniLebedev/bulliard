@@ -1,12 +1,11 @@
+using System;
 using Godot;
 
 public partial class Ball : RigidBody3D
 {
-	[Export] private float moveSpeed = 9.0f;
-	[Export] private float moveSpeedCommon = 9.0f;
-
-	[Export] private float moveSpeedMax = 9.0f;
-
+	[Export] private float moveSpeed = 5.0f;
+	[Export] private float moveSpeedCommon = 5.0f;
+	[Export] private float moveSpeedMax = 12.0f;
 	[Export] private CameraControl cam;
 	[Export] private int Jumps = 0;
 
@@ -15,7 +14,6 @@ public partial class Ball : RigidBody3D
 		BodyEntered += OnBodyEntered;
 		this.ContactMonitor = true;
 		this.MaxContactsReported = 8;
-		moveSpeed = moveSpeedCommon;
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -43,7 +41,7 @@ public partial class Ball : RigidBody3D
 			Jumps--;
 		}
 
-		if (Input.IsActionPressed("Shift") && Jumps > 0)
+		if (Input.IsActionPressed("Shift"))
 		{
 			moveSpeed = moveSpeedMax;
 		}
@@ -51,6 +49,10 @@ public partial class Ball : RigidBody3D
 		{
 			moveSpeed = moveSpeedCommon;
 		}
+
+		float speed = MathF.Round(LinearVelocity.Length(), 1);
+		GD.Print(speed);
+
 	}
 
 	private void OnBodyEntered(Node body)
@@ -60,10 +62,7 @@ public partial class Ball : RigidBody3D
 		{
 			Jumps = 2;
 		}
-		if (body.IsInGroup("Ball"))
-		{
 
-		}
 
 	}
 
@@ -75,7 +74,7 @@ public partial class Ball : RigidBody3D
 		{
 			var collider = state.GetContactColliderObject(i);
 
-			if (collider is RigidBody3D otherBall && otherBall.IsInGroup("Ball"))
+			if (collider is RigidBody3D otherBall && (otherBall.IsInGroup("Ball") || otherBall.IsInGroup("AiBall")))
 			{
 				Vector3 myVelocity = LinearVelocity;
 				Vector3 otherVelocity = otherBall.LinearVelocity;
@@ -89,7 +88,7 @@ public partial class Ball : RigidBody3D
 				if (mySpeed > otherSpeed)
 				{
 					Vector3 pushDir = -normal;
-					otherBall.ApplyCentralImpulse(pushDir * mySpeed * 4f);
+					otherBall.ApplyCentralImpulse(pushDir * mySpeed * 2f);
 				}
 			}
 		}

@@ -1,20 +1,16 @@
 [gd_scene format=3 uid="uid://bqb3enva8fayr"]
 
 [ext_resource type="Script" uid="uid://dr24gsgka718s" path="res://props/ball/Ball.cs" id="1_xaix2"]
+[ext_resource type="Material" uid="uid://ohmrvpxs6aki" path="res://props/ball/BallMaterials.tres" id="2_42t3a"]
 [ext_resource type="Script" uid="uid://cplvk22yxnffr" path="res://props/ball/CameraControl.cs" id="3_42t3a"]
-[ext_resource type="Material" uid="uid://cn0uqc7hr5gyp" path="res://props/ball/BallMaterial.tres" id="5_c0ahv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ixqi8"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_42t3a"]
-material = ExtResource("5_c0ahv")
-radial_segments = 32
+material = ExtResource("2_42t3a")
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=308312661 node_paths=PackedStringArray("cam")]
 script = ExtResource("1_xaix2")
-moveSpeed = 8.0
-moveSpeedCommon = 8.0
-moveSpeedMax = 16.0
 cam = NodePath("Camera3D")
 metadata/Ball = "Ball"
 
